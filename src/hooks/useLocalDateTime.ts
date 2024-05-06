@@ -14,7 +14,7 @@ export const useLocalDateTime = (
     useEffect(() => {
         const interval = setInterval(() => {
             setDateTime(dayjs().tz(timezone))
-        }, 1000)
+        }, 60000)
 
         return () => clearInterval(interval)
     }, [timezone])
