@@ -26,7 +26,7 @@ export class PlaylistModel {
 
         if(playlist.dateRange) {
             this.startDay =  dayjs(playlist.dateRange.start)
-            this.endDay = dayjs(playlist.dateRange.end)
+            this.endDay = dayjs(playlist.dateRange.end).endOf("day")
         }
 
         if(playlist.timeRange) {
