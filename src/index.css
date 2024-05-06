@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: "Manrope", sans-serif;
+}
+
+html {
+    width: 100vw;
+    overflow-x: hidden;
+    padding: 0 !important;
+}
