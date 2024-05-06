@@ -1,4 +1,9 @@
+import dayjs from "dayjs"
+import isSameOrBefore from "dayjs/plugin/isSameOrBefore"
+import isSameOrAfter from "dayjs/plugin/isSameOrAfter"
 import { useState } from "react"
+dayjs.extend(isSameOrBefore)
+dayjs.extend(isSameOrAfter)
 
 const getMaxDaysInMonth = (year: number, month: number) => {
     const date = new Date(year, month + 1, 0)
@@ -25,7 +30,7 @@ export const useDate = (
     const days = generateDays(getMaxDaysInMonth(date.getFullYear(), date.getMonth()))
 
     const setDate = (newDate: Date): void => {
-        if ((!min || newDate >= min) && (!max || newDate <= max)) {
+        if ((!min || dayjs(newDate).isSameOrAfter(min, "day")) && (!max || dayjs(newDate).isSameOrBefore(max, "day"))) {
             setDateState(newDate)
         }
     }
