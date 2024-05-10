@@ -37,25 +37,18 @@ export class DayScheduleBuilder {
     
     private buildSchedule(): ScheduleItemModel[] {
         const schedule: ScheduleItemModel[] = []
-        
-        let currentScheduleItem: ScheduleItemModel | null = null
-        
+        let lastItem: PlaylistModel | null | undefined
+    
         for (const { minute, item } of this.daySlots) {
-            if (this.isNewScheduleItemNeeded(currentScheduleItem, minute, item)) {
-                currentScheduleItem = this.createScheduleItem(minute, item)
-                schedule.push(currentScheduleItem)
+            if (item !== lastItem) {
+                schedule.push(this.createScheduleItem(minute, item))
+                lastItem = item
             } else {
-                this.updateScheduleItemEndTime(currentScheduleItem!, minute)
+                this.updateScheduleItemEndTime(schedule[schedule.length - 1], minute)
             }
         }
     
         return schedule
-    }
-    
-    private isNewScheduleItemNeeded(currentScheduleItem: ScheduleItemModel | null, minute: number, item: PlaylistModel | null): boolean {
-        return !currentScheduleItem ||
-               currentScheduleItem.playlist !== item ||
-               currentScheduleItem.endTime !== minute - 1
     }
     
     private createScheduleItem(startTime: number, playlist: PlaylistModel | null): ScheduleItemModel {
