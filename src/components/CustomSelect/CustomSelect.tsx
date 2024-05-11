@@ -6,9 +6,9 @@ import { flip, useFloating } from "@floating-ui/react"
 import { CustomScroll } from "@/components"
 import { useCustomSelectFilter } from "@/hooks"
 
-interface CustomSelectProps {
+type CustomSelectProps = {
     options: (string | number)[]
-    selected: string
+    selected: string | number
     onSelectChange: (selected: string | number) => void
 }
 
