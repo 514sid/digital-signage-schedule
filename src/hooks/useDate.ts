@@ -10,13 +10,6 @@ const getMaxDaysInMonth = (year: number, month: number) => {
     return date.getDate()
 }
 
-const formatDate = (date: Date): string => {
-    const year = date.getFullYear().toString()
-    const month = (date.getMonth() + 1).toString().padStart(2, "0")
-    const day = date.getDate().toString().padStart(2, "0")
-    return `${year}-${month}-${day}`    
-}
-
 const generateDays = (daysInMonth: number): number[] => {
     return Array.from({ length: daysInMonth }, (_, index) => index + 1)
 }
@@ -61,7 +54,7 @@ export const useDate = (
     const month = date.getMonth() + 1
     const year = date.getFullYear()
 
-    const formattedDate = formatDate(date)
+    const formattedDate = dayjs(date).format("YYYY-MM-DD")
 
     return {
         date,
