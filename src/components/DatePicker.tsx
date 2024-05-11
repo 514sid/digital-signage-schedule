@@ -1,5 +1,6 @@
 import { CustomSelect } from "@/components"
 import { useDate, useMonths } from "@/hooks"
+import dayjs from "dayjs"
 import { useEffect } from "react"
 
 export type Date = {
@@ -20,9 +21,9 @@ export const DatePicker = ({
     maxDate?: string
 }) => {
     const { formattedDate, year, month, day, days, setMonth, setYear, setDay } = useDate(
-        value ? new Date(value) : null, 
-        minDate ? new Date(minDate) : undefined, 
-        maxDate ? new Date(maxDate) : undefined
+        value ? dayjs(value) : null, 
+        minDate ? dayjs(minDate) : undefined, 
+        maxDate ? dayjs(maxDate) : undefined
     )
     
     const { months, getMonthName, getMonthNumber } = useMonths()
@@ -33,8 +34,8 @@ export const DatePicker = ({
         <div className="flex gap-1.5 items-center">
             <div className="w-[90px]">
                 <CustomSelect
-                    options={ ["2022", "2023", "2024", "2025"] }
-                    selected={ year.toString() }
+                    options={ [2022, 2023, 2024, 2025] }
+                    selected={ year }
                     onSelectChange={ setYear }
                 />
             </div>
@@ -48,7 +49,7 @@ export const DatePicker = ({
             <div className="w-[70px]">
                 <CustomSelect
                     options={ days }
-                    selected={ day.toString() }
+                    selected={ day }
                     onSelectChange={ (value) => setDay(value as number) }
                 />
             </div>

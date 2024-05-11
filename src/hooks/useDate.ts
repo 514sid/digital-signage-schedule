@@ -1,60 +1,53 @@
-import dayjs from "dayjs"
+import dayjs, { Dayjs } from "dayjs"
 import isSameOrBefore from "dayjs/plugin/isSameOrBefore"
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter"
 import { useState } from "react"
 dayjs.extend(isSameOrBefore)
 dayjs.extend(isSameOrAfter)
 
-const getMaxDaysInMonth = (year: number, month: number) => {
-    const date = new Date(year, month + 1, 0)
-    return date.getDate()
-}
-
-const generateDays = (daysInMonth: number): number[] => {
-    return Array.from({ length: daysInMonth }, (_, index) => index + 1)
-}
+const generateDays = (daysInMonth: number): number[] =>
+    Array.from({ length: daysInMonth }, (_, index) => index + 1)
 
 export const useDate = (
-    initialDate?: Date | null,
-    min?: Date,
-    max?: Date,
+    initialDate?: Dayjs | null,
+    min?: Dayjs,
+    max?: Dayjs,
 ) => {
-    const [date, setDateState] = useState<Date>(initialDate || new Date())
-    const days = generateDays(getMaxDaysInMonth(date.getFullYear(), date.getMonth()))
+    const [date, setDate] = useState<Dayjs>(initialDate || dayjs())
+    const days = generateDays(date.daysInMonth())
 
-    const setDate = (newDate: Date): void => {
-        if ((!min || dayjs(newDate).isSameOrAfter(min, "day")) && (!max || dayjs(newDate).isSameOrBefore(max, "day"))) {
-            setDateState(newDate)
+    const setNewDate  = (newDate: Dayjs): void => {
+        const isNotBeforeMinDate = !min || newDate.isSameOrAfter(min, "day")
+        const isNotAfterMaxDate = !max || newDate.isSameOrBefore(max, "day")
+        
+        if (isNotBeforeMinDate && isNotAfterMaxDate) {
+            setDate(newDate)
         }
     }
 
     const setDay = (day: number): void => {
-        const newDate = new Date(date.getFullYear(), date.getMonth(), 1)
-        const maxDay = Math.min(day, getMaxDaysInMonth(date.getFullYear(), date.getMonth()))
-        newDate.setDate(maxDay)
-        setDate(newDate)
+        setNewDate(date.date(Math.min(day, date.daysInMonth())))
     }
-
+    
     const setMonth = (month: number): void => {
-        const newDate = new Date(date.getFullYear(), month - 1, 1)
-        const maxDays = getMaxDaysInMonth(date.getFullYear(), month - 1)
-        newDate.setDate(Math.min(date.getDate(), maxDays))
-        setDate(newDate)
+        const newDate = date.month(month - 1).startOf("month")
+        const maxDays = newDate.daysInMonth()
+        const day = Math.min(date.date(), maxDays)
+        
+        setNewDate(newDate.date(day).startOf("day"))
     }
-
+    
     const setYear = (year: number | string): void => {
         const parsedYear = typeof year === "string" ? parseInt(year, 10) : year
-        const newDate = new Date(parsedYear, date.getMonth(), 1)
-        const maxDays = getMaxDaysInMonth(parsedYear, date.getMonth())
-        newDate.setDate(Math.min(date.getDate(), maxDays))
-        setDate(newDate)
+        
+        const newDate = date.year(parsedYear)
+        const maxDays = newDate.daysInMonth()
+        const day = Math.min(date.date(), maxDays)
+        
+        setNewDate(newDate.date(day).startOf("day"))
     }
 
-    const day = date.getDate()
-    const month = date.getMonth() + 1
-    const year = date.getFullYear()
-
-    const formattedDate = dayjs(date).format("YYYY-MM-DD")
+    const formattedDate = date.format("YYYY-MM-DD")
 
     return {
         date,
@@ -63,9 +56,9 @@ export const useDate = (
         setMonth,
         setYear,
         days,
-        day,
-        month,
-        year,
+        day: date.date(),
+        month: date.month() + 1,
+        year: date.year(),
         formattedDate,
     }
 }
