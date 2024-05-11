@@ -28,7 +28,7 @@ export const useDate = (
     const setDay = (day: number): void => {
         setNewDate(date.date(Math.min(day, date.daysInMonth())))
     }
-    
+
     const setMonth = (month: number): void => {
         const newDate = date.month(month - 1).startOf("month")
         const maxDays = newDate.daysInMonth()
@@ -36,7 +36,7 @@ export const useDate = (
         
         setNewDate(newDate.date(day).startOf("day"))
     }
-    
+
     const setYear = (year: number | string): void => {
         const parsedYear = typeof year === "string" ? parseInt(year, 10) : year
         
