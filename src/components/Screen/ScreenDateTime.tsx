@@ -1,5 +1,5 @@
 import { useLocalDateTime } from "@/hooks"
-import { useScreen } from "@/providers"
+import { useScreen } from "@/hooks"
 import { Screen } from "@/types"
 
 export const ScreenDateTime = ({

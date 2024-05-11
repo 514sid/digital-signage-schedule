@@ -3,7 +3,7 @@ import { DaySchedule } from "@/components"
 import dayjs from "dayjs"
 import Button from "@/components/Button"
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid"
-import { useScreen } from "@/providers"
+import { useScreen } from "@/hooks"
 import { useLocalDateTime } from "@/hooks"
 dayjs.Ls.en.weekStart = 1
 

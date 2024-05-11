@@ -1,5 +1,5 @@
 import { PageInnerContainer, PlaylistCard } from "@/components"
-import { useScreen } from "@/providers"
+import { useScreen } from "@/hooks"
 
 export const ScreenPlaylists = () => {
     const screen = useScreen()

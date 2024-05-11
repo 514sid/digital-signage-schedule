@@ -2,7 +2,7 @@ import { useState } from "react"
 import { DaySchedule } from "@/components"
 import Button from "@/components/Button"
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid"
-import { useScreen } from "@/providers"
+import { useScreen } from "@/hooks"
 import { useLocalDateTime } from "@/hooks"
 
 export const ScreenDailySchedule = () => {

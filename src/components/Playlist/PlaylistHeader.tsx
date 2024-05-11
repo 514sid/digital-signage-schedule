@@ -1,4 +1,4 @@
-import { usePlaylist } from "@/providers"
+import { usePlaylist } from "@/hooks"
 import { Tab } from "@/types"
 import { PageHeader, PageTabs } from "@/components"
 import Button from "@/components/Button"

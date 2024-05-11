@@ -4,7 +4,7 @@ import { PageInnerContainer, PlaylistDateRangeEditor, PlaylistTimeRangeEditor, P
 import { useEffect, useState } from "react"
 import { PlaylistBuilder } from "@/utils"
 import { usePlaylists } from "@/hooks"
-import { usePlaylist } from "@/providers"
+import { usePlaylist } from "@/hooks"
 
 export const PlaylistScheduleEditor = () => {
     const playlist = usePlaylist()

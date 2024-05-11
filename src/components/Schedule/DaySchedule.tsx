@@ -1,5 +1,5 @@
 import { Dayjs } from "dayjs"
-import { useScreen } from "@/providers"
+import { useScreen } from "@/hooks"
 import { DayScheduleBuilder } from "@/utils"
 import { ScheduleItemModel } from "@/models"
 

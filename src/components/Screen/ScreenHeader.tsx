@@ -1,4 +1,4 @@
-import { useScreen } from "@/providers"
+import { useScreen } from "@/hooks"
 import { Tab } from "@/types"
 import { PageHeader, PageTabs, ScreenDateTime } from "@/components"
 

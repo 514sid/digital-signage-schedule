@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { PageInnerContainer } from "@/components"
 import { usePlaylists, useScreens } from "@/hooks"
-import { usePlaylist } from "@/providers"
+import { usePlaylist } from "@/hooks"
 import { Screen } from "@/types"
 import { PlusIcon, XMarkIcon } from "@heroicons/react/20/solid"
 import { PlaylistBuilder } from "@/utils"

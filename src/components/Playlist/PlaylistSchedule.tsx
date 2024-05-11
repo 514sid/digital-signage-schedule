@@ -1,4 +1,4 @@
-import { usePlaylist } from "@/providers"
+import { usePlaylist } from "@/hooks"
 import { DateRangeDisplay } from "@/components"
 import { ReactNode } from "react"
 

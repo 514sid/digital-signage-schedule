@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { usePlaylists } from "@/hooks"
-import { usePlaylist } from "@/providers"
+import { usePlaylist } from "@/hooks"
 import { PlaylistBuilder } from "@/utils"
 import Button from "@/components/Button"
 
