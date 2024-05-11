@@ -24,7 +24,7 @@ module.exports = {
         ecmaVersion: "latest",
         sourceType: "module",
     },
-    plugins: ["@typescript-eslint", "react", "@stylistic/ts", "@stylistic/jsx"],
+    plugins: ["@typescript-eslint", "react", "@stylistic/ts", "@stylistic/jsx", "react-refresh"],
     rules: {
         indent: ["error", 4],
         quotes: ["error", "double"],
@@ -38,7 +38,8 @@ module.exports = {
         "react/jsx-uses-react": "off",
         "@stylistic/ts/object-curly-spacing": ["error", "always"],
         "@stylistic/jsx/jsx-curly-spacing": [2, "always"],
-        "@stylistic/jsx/jsx-closing-bracket-location": 1
+        "@stylistic/jsx/jsx-closing-bracket-location": 1,
+        "react-refresh/only-export-components": "warn"
     },
     settings: {
         react: {
