@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react"
+import { createContext } from "react"
 import { Outlet, useParams } from "react-router-dom"
 import { useScreens } from "@/hooks"
 import { Screen } from "@/types"
@@ -6,7 +6,7 @@ import { NotFoundPage } from "@/pages"
 
 type ScreenContextType = Screen | undefined
 
-const ScreenContext = createContext<ScreenContextType>(undefined)
+export const ScreenContext = createContext<ScreenContextType>(undefined)
 
 export const ScreenProvider = () => {
     const params = useParams<{ screenId: string }>()
@@ -24,14 +24,4 @@ export const ScreenProvider = () => {
             )}
         </ScreenContext.Provider>
     )
-}
-
-export const useScreen = (): Screen => {
-    const screen = useContext(ScreenContext)
-    
-    if (!screen) {
-        throw new Error("useScreen must be used within a ScreenProvider")
-    }
-
-    return screen
 }
